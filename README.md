@@ -67,3 +67,29 @@
   - 위에서 발생되는 것과 같은 코드 중복을 해결하기 위함
 - Next Router 동작 시에도 SSR, CSR을 고려해야함
   - 기본적으로 서버 컴포넌트이므로 그냥 redirect 수행시, 서버측에서 수행되는 redirect임
+
+<hr />
+
+### # 섹션 2
+
+- `flex-grow`
+  - `flex-item 요소`가 `flex-container 요소 내부에서 할당 가능한 공간의 정도`를 선언
+- `inherit`
+  - fixed 요소에 너비 100%를 주고 싶을때
+- a tag active 상태
+- `useSelectedLayoutSegment`, `useSelectedLayoutSegments`
+  - 바로 하위의 `디렉토리명(들) 값`을 가져올 수 있음
+- `서버 컴포넌트` 관련 주의사항
+  - `이벤트 핸들러`가 존재 or `hook을 사용`하면 보통 `클라이언트 컴포넌트`여야 한다고 생각하면 편함
+  - app router를 공부하기 싫었던 주요 이유였을 듯
+- 미디어 쿼리 `prefers-color-scheme`
+  - 다크모드 스타일링 가능
+    ```css
+    @media (prefers-color-scheme: dark) {
+      .theme-a.adaptive {
+        background: #753;
+        color: #dcb;
+        outline: 5px dashed #000;
+      }
+    }
+    ```
