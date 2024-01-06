@@ -153,3 +153,4 @@
     - onClick -> a tag만 변경하는 작업을 했는데, 색인률이 많이 높아지긴 했었다고 함
     - 참고
       - https://webmasters.stackexchange.com/questions/113525/seo-impact-of-onclick-handlers-in-place-of-links
+- `onClickCapture` 핸들러 존재
