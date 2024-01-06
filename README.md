@@ -80,6 +80,7 @@
 - `inherit`
   - fixed 요소에 너비 100%를 주고 싶을때
 - a tag active 상태
+  - 무의식적으로 `컴포넌트 내 상태`를 이용해 표현하지 않는게 좋을 듯
 - `useSelectedLayoutSegment`, `useSelectedLayoutSegments`
   - 바로 하위의 `디렉토리명(들) 값`을 가져올 수 있음
 - 미디어 쿼리 `prefers-color-scheme`
@@ -93,3 +94,61 @@
       }
     }
     ```
+- `server action`
+  - `서버에서 실행`되는 비동기 함수
+    - 서버, 클라이언트 측에서 실행되는 `form에 대한 전송, 데이터 변형`을 처리할 수 있다.
+  - 'use client', 'use server' 모두 nextjs app router에서 나온 개념이라기 보다는 `react에서 나온 개념`
+  - 컨벤션
+    - 클라이언트 컴포넌트
+      - `모듈 수준`의 지시만 가능
+    - 서버 컴포넌트
+      - `모듈 수준`, `인라인 수준`의 지시 모두 가능
+  - 결과적으로는 단순 함수이기 때문에, 꼭 `form에만 국한되는 기능은 아님`
+    - 결국 목적은, `서버에서 먼저 실행되는 함수를 만들어`, 해당 로직이 `서버에서 실행됨으로써 얻는 이득을 취하기 위함`. (`pre-loading, 캐싱, 클라이언트 리소스 절약` 등)
+      - `server component의 이점`과 비슷
+    - 패턴과 모범사례
+      - https://nextjs.org/docs/app/building-your-application/data-fetching/patterns#fetching-data-on-the-server
+    - \*\* 아직 `실험적인 기능`
+- react `useOptimistic` 훅
+  - `optimistic UI (낙관적인 UI)`
+    - `보편적으로 서버와의 통신이 정상적일 확률은 99% 이상,` `따라서 간결해야하거나 중요성이 떨어지는 UI는 낙관적으로` 구현하는 것이 낫다.
+      - (ex. `좋아요`, `토글 라디오 버튼` 등)
+      - (ex. `빠르게 여러 번` 누르는 등)
+    - https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/
+- `inlay hints`
+  - 각 언어, 툴에 대한 `보조 힌트`를 제공하는 기능
+    ![inlay-hints](/images/inlay-hints.png)
+  - vscode에서 기본적으로 제공
+- `dayjs`
+  - `ios 사파리` 날짜 포맷 관련 이슈
+    - 사파리에서는 정확히 `ISO 8601` format만 지원
+      - `생각보다 평범한 포맷`도 Date 객체가 invalid date로 판단하는 경우가 많다
+        - ex. `YYYY.MM.DD` -> `'invalid date'`
+    - `내부적으로 Date 객체를 사용하는 dayjs도 마찬가지 해당 이슈 발생`. 다른 라이브러리들은 모르겠음
+  - https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+- search 페이지 -> SEO 관련
+  - `path` vs `query params`
+    - `/search/냉장고` vs `/search?search=냉장고`
+    - path의 형태가 유리
+      - query 형태의 페이지들을 모두 별도의 새로운 페이지로 인식 -> `중복된 검색결과가 불필요하게 노출`
+      - 위 내용이 `크롤러에게도 동일하게 불리하게 작용`
+        - `크롤링 자체가 비효일적`
+        - `메인 페이지 indexing`에 혼동
+      - `query params`가 많이 붙을수록 해당 url은 신뢰할 수 없는 형태로 바뀌게 된다.
+        - 하나의 의미를 지닌 path로 요약
+          ![path_vs_query_params](/images/path_vs_query_params.png)
+        - `CTR(Click-through Rate: 클릭률)` 저하
+        - 특히나 카카오, 페이스북 등 `소셜에서 공유될 때` 신뢰도에 큰 영향을 끼침
+    - query parmas를 사용하더라도 아래 내용을 지키면 좋음
+      - `불필요한 query 제거`
+      - `빈 값을 가진 query 제거`
+      - `key를 한번만` 사용
+        - X: `?key1=a&key2=b`
+        - O: `?key=a-b`
+      - 하나의 앱에서는 페이지가 달라도 `항상 일관된 순서의 key 정렬`
+    - https://www.searchenginejournal.com/technical-seo/url-parameter-handling/
+  - `a tag` vs `onClick`
+    - 구글은 인식을 잘 하는 것으로 확인되지만, 기타 다른 검색엔진은 불확실함
+    - onClick -> a tag만 변경하는 작업을 했는데, 색인률이 많이 높아지긴 했었다고 함
+    - 참고
+      - https://webmasters.stackexchange.com/questions/113525/seo-impact-of-onclick-handlers-in-place-of-links
