@@ -77,10 +77,11 @@
 
 - `flex-grow`
   - `flex-item 요소`가 `flex-container 요소 내부에서 할당 가능한 공간의 정도`를 선언
+  - `부모 컨테이너를 flex로 두고, 자식 요소들의 너비들을 width 속성에 %로 설정`해주는데, `flex-shrink, flex-grow, flex-basis`를 활용?
 - `inherit`
   - fixed 요소에 너비 100%를 주고 싶을때
-- a tag active 상태
-  - 무의식적으로 `컴포넌트 내 상태`를 이용해 표현하지 않는게 좋을 듯
+- a tag active 상태 -> 스타일링
+  - url로 분리되는 탭이라면, 컴포넌트 내부 상태를 활용하는 것보다 active 상태를 활용하는 것이 맞을 듯
 - `useSelectedLayoutSegment`, `useSelectedLayoutSegments`
   - 바로 하위의 `디렉토리명(들) 값`을 가져올 수 있음
 - 미디어 쿼리 `prefers-color-scheme`
