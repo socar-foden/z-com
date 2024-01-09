@@ -154,3 +154,9 @@
     - 참고
       - https://webmasters.stackexchange.com/questions/113525/seo-impact-of-onclick-handlers-in-place-of-links
 - `onClickCapture` 핸들러 존재
+- `클라이언트 컴포넌트 내` `서버 컴포넌트`
+  - `직접 import해서` 그려주는게 아니라, `children`으로 받아서 그려주면 됨
+    - 자세한 원리는 모르겠으나, 정해둔 패턴인듯 함
+      - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#unsupported-pattern-importing-server-components-into-client-components
+  - \*\* `컴포지션 패턴` (각 컴포넌트를 사용해야 하는 순간)
+    - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components
