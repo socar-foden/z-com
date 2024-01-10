@@ -75,11 +75,6 @@
 
 ### # 섹션 2
 
-- `flex-grow`
-  - `flex-item 요소`가 `flex-container 요소 내부에서 할당 가능한 공간의 정도`를 선언
-  - `부모 컨테이너를 flex로 두고, 자식 요소들의 너비들을 width 속성에 %로 설정`해주는데, `flex-shrink, flex-grow, flex-basis`를 활용?
-- `inherit`
-  - fixed 요소에 너비 100%를 주고 싶을때
 - a tag active 상태 -> 스타일링
   - url로 분리되는 탭이라면, 컴포넌트 내부 상태를 활용하는 것보다 active 상태를 활용하는 것이 맞을 듯
 - `useSelectedLayoutSegment`, `useSelectedLayoutSegments`
@@ -113,7 +108,7 @@
 - react `useOptimistic` 훅
   - `optimistic UI (낙관적인 UI)`
     - `보편적으로 서버와의 통신이 정상적일 확률은 99% 이상,` `따라서 간결해야하거나 중요성이 떨어지는 UI는 낙관적으로` 구현하는 것이 낫다.
-      - (ex. `좋아요`, `토글 라디오 버튼` 등)
+      - (ex. `좋아요`, `부드럽게 토글되는 라디오 버튼` 등)
       - (ex. `빠르게 여러 번` 누르는 등)
     - https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/
 - `inlay hints`
@@ -150,13 +145,8 @@
     - https://www.searchenginejournal.com/technical-seo/url-parameter-handling/
   - `a tag` vs `onClick`
     - 구글은 인식을 잘 하는 것으로 확인되지만, 기타 다른 검색엔진은 불확실함
-    - onClick -> a tag만 변경하는 작업을 했는데, 색인률이 많이 높아지긴 했었다고 함
     - 참고
       - https://webmasters.stackexchange.com/questions/113525/seo-impact-of-onclick-handlers-in-place-of-links
 - `onClickCapture` 핸들러 존재
-- `클라이언트 컴포넌트 내` `서버 컴포넌트`
-  - `직접 import해서` 그려주는게 아니라, `children`으로 받아서 그려주면 됨
-    - 자세한 원리는 모르겠으나, 정해둔 패턴인듯 함
-      - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#unsupported-pattern-importing-server-components-into-client-components
-  - \*\* `컴포지션 패턴` (각 컴포넌트를 사용해야 하는 순간)
-    - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components
+- \*\* `컴포지션 패턴` (`Server/Client 컴포넌트`를 사용해야 하는 순간)
+  - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components
