@@ -150,3 +150,54 @@
 - `onClickCapture` 핸들러 존재
 - \*\* `컴포지션 패턴` (`Server/Client 컴포넌트`를 사용해야 하는 순간)
   - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components
+
+### # 섹션 3
+
+- `msw`
+  - v2 사용 시 `서버쪽 세팅을 할 때`, 아래 모듈을 사용하는 게 더 편리할 듯
+    ```javascript
+    import { setupServer } from 'msw/node';
+    ```
+  - `간단`하기도 하고, 강의 내용에서 `cors 모듈`을 붙인 것도 불필요하지 않을까
+  - 어느 블로그에서 본 세팅이 더 보기 편했음
+    ```tsx
+    export default function App({ Component, pageProps }: AppProps) {
+      if (process.env.NODE_ENV === 'development') {
+        if (typeof window === 'undefined') {
+          (async () => {
+            const { server } = await import('../mocks/server');
+            server.listen();
+          })();
+        } else {
+          (async () => {
+            const { worker } = await import('../mocks/browser');
+            worker.start();
+          })();
+        }
+      }
+      return <Component {...pageProps} />;
+    }
+    ```
+  - Q. msw의 장점은..?
+    - 각각의 케이스(실패, 성공 등등..)을 적어두고 `필요에 따라 주석을 해제해서 확인`하는 듯 한데, 그냥 모킹용 코드를 이와 같은 방식으로 잘 분리해서 적어두는 것과 무슨 차이가 있는지?
+- `submit 핸들러`를 `서버 액션으로 구현`하면 좋은점?
+  - 잘 모르겠다고 함
+- `서버 액션`에서 `redirect API` 사용시 주의점
+  - `try catch 문 안에서` 사용하면 안된다.
+  - 플래그 변수를 하나 더 두거나 하는 이상한 방법으로 우회해야함
+  - 참고
+    - https://github.com/vercel/next.js/issues/49298#issuecomment-1542055642
+  - 고치고 있는 듯함(PR 리뷰중)
+    - https://github.com/vercel/next.js/pull/60435
+- `useFormState`, `useFormStatus` 훅
+  - \*\* `실험적인 기능`
+  - `useFormState`
+    - `submit handler가 반드시 서버 액션일 때` 사용해야 함
+    - `폼 관련해서 관리할 별도의 상태`를 관리
+  - `useFormStatus`
+    - `실제 현재 폼 양식의 상태`를 읽어올 수 있음
+  - 전반적으로 폼 관련 기능을 목적에 비해 다소 복잡하게 개발하는 느낌
+    - 밸리데이션이 거의 없는데도 코드가 길다
+    - `아무 form 관련 라이브러리`로 관리하는게 더 `선언적이고, 분리가 잘되어`있을 듯 함
+- 앱 내 `모든 텍스트`
+  - `다국어 처리`를 위해 코드 값 기반으로 `상수화하는 습관`
