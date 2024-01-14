@@ -201,3 +201,69 @@
     - `아무 form 관련 라이브러리`로 관리하는게 더 `선언적이고, 분리가 잘되어`있을 듯 함
 - 앱 내 `모든 텍스트`
   - `다국어 처리`를 위해 코드 값 기반으로 `상수화하는 습관`
+- \*\* `next-auth(auth.js)`
+  - \*\* `route-handlers(api route)`, `middleware`, `catch-all segments` 를 이해해야함
+    - `route-handlers(api route)`
+      - https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+    - `middleware`
+      - https://nextjs.org/docs/app/building-your-application/routing/middleware
+    - `catch-all segments`
+      - https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments
+  - `signIn` 사용시 `서버 컴포넌트 vs 클라이언트 컴포넌트`
+    - 서버
+      - `NextAuth() return 내` signIn
+    - 클라이언트
+      - `next-auth/react` 내 signIn
+    - signIn 말고도 `기타 다른 API 들도 마찬가지`
+    - Q. why?
+  - next-auth API들의 `redirect 옵션`
+    - `서버쪽에서 실행`시켜줌
+    - `별도의 API로 리다이렉트` 시켜줘야함
+  - Q. `User 인터페이스`는 왜 고정되어있을까?
+    - Q. 확장해도 될지, 확장하려면?
+  - `세션`
+    - `어떤 종류, 상태의 쿠키`로 관리되는 세션인지
+      - https://next-auth.js.org/configuration/options#session
+    - `session cookie` vs `permanent cookie`
+      - https://secureprivacy.ai/blog/session-cookies-vs-persistent-cookies
+    - Q. next-auth는 `무조건 permanent cookie?`
+      - session cookie를 지원해달라는 issue가 있었지만 거절
+        - https://github.com/nextauthjs/next-auth/issues/2534
+- `server action` 캐싱 관련
+  - 캐싱은 서버에서 이루어짐
+  - 서로 다른 사용자 A, B가 같은 캐싱을 공유할 수 있는 문제
+  - 일반적인 데이터 말고, 유저 관련 정보일 경우 주의해야할 필요?
+    - ex. A 사용자의 프로필 정보가 B 사용자에게 노출
+  - server action 말고도 `서버에서 실행되는 로직일 경우`, 비슷한 문제에 대해 고려해볼 필요가 있음
+    - ex. vue + ssr 환경에서 vuex `싱글턴 객체 이슈`
+- nextjs의 `fetch API 확장`
+  - https://nextjs.org/docs/app/api-reference/functions/fetch
+  - `cache, next` 옵션
+- react-query
+  - 기본 상태, 옵션
+    - `staleTime`
+      - `일반적으로 우리가 생각`하는 의도(캐싱)
+    - `gcTime`
+      - staleTime보다 커야 한다.
+  - `refetch` vs `invalidate` vs `reset` vs `remove` 차이 인지
+  - 각 상태에 대한 인지를 하고, `devtools`를 이용하는 습관을 들여야겠다.
+- 검색 후 router.push
+  - 백오피스에서도 적용하면 좋지 않을까 (공유가능한 URL)
+- react query `error, success` 처리 선언적?으로
+  - O
+    ```typescript
+    const { data, error } = useQuery(...)
+    ```
+  - X
+    ```typescript
+    useQuery({
+      ...
+      onSuccess: () => {
+        ...
+      },
+      onError: () => {
+        ...
+      }
+    })
+    ```
+  - 블랑이 공유했던 내용
