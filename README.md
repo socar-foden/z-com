@@ -156,21 +156,21 @@
 - `msw`
   - v2 사용 시 `서버쪽 세팅을 할 때`, 아래 모듈을 사용하는 게 더 편리할 듯
     ```javascript
-    import { setupServer } from "msw/node";
+    import { setupServer } from 'msw/node';
     ```
   - `간단`하기도 하고, 강의 내용에서 `cors 모듈`을 붙인 것도 불필요하지 않을까
   - 어느 블로그에서 본 세팅이 더 보기 편했음
     ```tsx
     export default function App({ Component, pageProps }: AppProps) {
-      if (process.env.NODE_ENV === "development") {
-        if (typeof window === "undefined") {
+      if (process.env.NODE_ENV === 'development') {
+        if (typeof window === 'undefined') {
           (async () => {
-            const { server } = await import("../mocks/server");
+            const { server } = await import('../mocks/server');
             server.listen();
           })();
         } else {
           (async () => {
-            const { worker } = await import("../mocks/browser");
+            const { worker } = await import('../mocks/browser');
             worker.start();
           })();
         }
@@ -269,3 +269,5 @@
   - 블랑이 공유했던 내용
 - ssr시, 모달 뒷 배경이 csr과 달라야 하는(`가려야 하는`) 경우가 필요한가?
   - `페이지네이션` 되어있는 경우
+- `loading, error` 컴포넌트
+  - 각 페이지별로 존재
