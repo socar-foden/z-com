@@ -156,21 +156,21 @@
 - `msw`
   - v2 사용 시 `서버쪽 세팅을 할 때`, 아래 모듈을 사용하는 게 더 편리할 듯
     ```javascript
-    import { setupServer } from 'msw/node';
+    import { setupServer } from "msw/node";
     ```
   - `간단`하기도 하고, 강의 내용에서 `cors 모듈`을 붙인 것도 불필요하지 않을까
   - 어느 블로그에서 본 세팅이 더 보기 편했음
     ```tsx
     export default function App({ Component, pageProps }: AppProps) {
-      if (process.env.NODE_ENV === 'development') {
-        if (typeof window === 'undefined') {
+      if (process.env.NODE_ENV === "development") {
+        if (typeof window === "undefined") {
           (async () => {
-            const { server } = await import('../mocks/server');
+            const { server } = await import("../mocks/server");
             server.listen();
           })();
         } else {
           (async () => {
-            const { worker } = await import('../mocks/browser');
+            const { worker } = await import("../mocks/browser");
             worker.start();
           })();
         }
@@ -215,10 +215,9 @@
     - 클라이언트
       - `next-auth/react` 내 signIn
     - signIn 말고도 `기타 다른 API 들도 마찬가지`
-    - Q. why?
   - next-auth API들의 `redirect 옵션`
     - `서버쪽에서 실행`시켜줌
-    - `별도의 API로 리다이렉트` 시켜줘야함
+    - 필요시 `별도의 API로 리다이렉트` 시켜줘야함
   - Q. `User 인터페이스`는 왜 고정되어있을까?
     - Q. 확장해도 될지, 확장하려면?
   - `세션`
@@ -226,15 +225,12 @@
       - https://next-auth.js.org/configuration/options#session
     - `session cookie` vs `permanent cookie`
       - https://secureprivacy.ai/blog/session-cookies-vs-persistent-cookies
-    - Q. next-auth는 `무조건 permanent cookie?`
-      - session cookie를 지원해달라는 issue가 있었지만 거절
-        - https://github.com/nextauthjs/next-auth/issues/2534
 - `server action` 캐싱 관련
   - 캐싱은 서버에서 이루어짐
   - 서로 다른 사용자 A, B가 같은 캐싱을 공유할 수 있는 문제
   - 일반적인 데이터 말고, 유저 관련 정보일 경우 주의해야할 필요?
     - ex. A 사용자의 프로필 정보가 B 사용자에게 노출
-  - server action 말고도 `서버에서 실행되는 로직일 경우`, 비슷한 문제에 대해 고려해볼 필요가 있음
+  - server action 말고도 `기타 서버에서 실행되는 로직, 컴포넌트일 경우`, 비슷한 문제에 대해 고려해볼 필요가 있음
     - ex. vue + ssr 환경에서 vuex `싱글턴 객체 이슈`
 - nextjs의 `fetch API 확장`
   - https://nextjs.org/docs/app/api-reference/functions/fetch
@@ -246,8 +242,8 @@
     - `gcTime`
       - staleTime보다 커야 한다.
   - `refetch` vs `invalidate` vs `reset` vs `remove` 차이 인지
-  - 각 상태에 대한 인지를 하고, `devtools`를 이용하는 습관을 들여야겠다.
-- 검색 후 router.push
+  - 각 상태에 대한 인지를 조금 더 정확히 하고, `devtools`를 이용하는 습관을 들여야겠다.
+- 검색 후 `router.push`
   - 백오피스에서도 적용하면 좋지 않을까 (공유가능한 URL)
 - react query `error, success` 처리 선언적?으로
   - O
@@ -268,6 +264,6 @@
     ```
   - 블랑이 공유했던 내용
 - ssr시, 모달 뒷 배경이 csr과 달라야 하는(`가려야 하는`) 경우가 필요한가?
-  - `페이지네이션` 되어있는 경우
+  - -> 뒷 배경이 `페이지네이션` 되어있는 경우
 - `loading, error` 컴포넌트
   - 각 페이지별로 존재
