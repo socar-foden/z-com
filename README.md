@@ -203,12 +203,13 @@
   - `다국어 처리`를 위해 코드 값 기반으로 `상수화하는 습관`
 - \*\* `next-auth(auth.js)`
   - \*\* `route-handlers(api route)`, `middleware`, `catch-all segments` 를 이해해야함
-    - `route-handlers(api route)`
-      - https://nextjs.org/docs/app/building-your-application/routing/route-handlers
-    - `middleware`
-      - https://nextjs.org/docs/app/building-your-application/routing/middleware
-    - `catch-all segments`
-      - https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments
+    - 조금 더 이해 필요
+      - `route-handlers(api route)`
+        - https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+      - `middleware`
+        - https://nextjs.org/docs/app/building-your-application/routing/middleware
+      - `catch-all segments`
+        - https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments
   - `signIn` 사용시 `서버 컴포넌트 vs 클라이언트 컴포넌트`
     - 서버
       - `NextAuth() return 내` signIn
@@ -225,13 +226,11 @@
       - https://next-auth.js.org/configuration/options#session
     - `session cookie` vs `permanent cookie`
       - https://secureprivacy.ai/blog/session-cookies-vs-persistent-cookies
-- `server action` 캐싱 관련
-  - 캐싱은 서버에서 이루어짐
-  - 서로 다른 사용자 A, B가 같은 캐싱을 공유할 수 있는 문제
-  - 일반적인 데이터 말고, 유저 관련 정보일 경우 주의해야할 필요?
-    - ex. A 사용자의 프로필 정보가 B 사용자에게 노출
-  - server action 말고도 `기타 서버에서 실행되는 로직, 컴포넌트일 경우`, 비슷한 문제에 대해 고려해볼 필요가 있음
-    - ex. vue + ssr 환경에서 vuex `싱글턴 객체 이슈`
+- `server action` 관련
+  - `기타 어떠한 형태라도, 서버에서 실행되는 로직일 경우`, 캐싱 말고도 `자원의 공유`에 대한 문제에 대해 생각해볼 필요가 있음
+    - ex. ssr 환경에서 vuex `싱글턴 객체 이슈`
+      - A 사용자의 정보가 B 사용자에게 노출
+      - 단순히 `예전 정보를 보여주는 것이 아니라`서 민감한 이슈였다.
 - nextjs의 `fetch API 확장`
   - https://nextjs.org/docs/app/api-reference/functions/fetch
   - `cache, next` 옵션
