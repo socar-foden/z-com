@@ -255,3 +255,16 @@
     - Promise를 리턴하는 컴포넌트 -> 조금 더 자세히 알아보긴 해야함
     - \*\* 그래서 Suspense는 `Effect 또는 이벤트 핸들러 내`에서 데이터를 가져오는 경우는 감지하지 않는다.
   - https://react.dev/reference/react/Suspense#displaying-a-fallback-while-content-is-loading
+
+### # 섹션 3
+
+- `pending, fetching` 상태 구별
+  - `pending` = `fetching + 최초`
+- \*\* react-query `쿼리키`
+  - 대분류 -> 중분류 이런 식으로 나열해주는게 좋다.
+  - `서로 다른 쿼리 간 싱크를 맞출 때` 논리구조에 맞게
+- API 분리 (호출부 -> `서버 vs 클라이언트`)
+  - 많은 api
+- Q. 스타일 적용 SSR 필요 여부
+  - 필요없지 않을까?
+  - css-in-js 처럼 눈에띄게 스타일링 적용이 늦는게 아니면, 필요성을 잘 모르겠다.
