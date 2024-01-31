@@ -256,7 +256,7 @@
     - \*\* 그래서 Suspense는 `Effect 또는 이벤트 핸들러 내`에서 데이터를 가져오는 경우는 감지하지 않는다.
   - https://react.dev/reference/react/Suspense#displaying-a-fallback-while-content-is-loading
 
-### # 섹션 3
+### # 섹션 4
 
 - `pending, fetching` 상태 구별
   - `pending` = `fetching + 최초`
